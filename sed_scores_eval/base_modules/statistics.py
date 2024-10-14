@@ -289,10 +289,11 @@ def _deltas_from_intermediate_statistics(scores, intermediate_stats):
     scores_unique, unique_idx = np.unique(scores, return_index=True)
     intermediate_stats = flatten(intermediate_stats, sep='\\')
     stat_keys = list(intermediate_stats.keys())
-    print("unique_idx: ")
-    print(unique_idx)
-    print("stat_keys: ")
-    print(stat_keys)
+    print(intermediate_stats)
+    for key in stat_keys:
+        print(f"Type of intermediate_stats[{key}]: {type(intermediate_stats[key])}")
+        print(f"Shape of intermediate_stats[{key}]: {getattr(intermediate_stats[key], 'shape', 'N/A')}")
+        print(f"Unique idx: {unique_idx}")  # Print unique_idx to verify it's consistent with expectations
     stats = np.stack([
         intermediate_stats[key][unique_idx]
         for key in stat_keys
